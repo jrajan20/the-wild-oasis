@@ -20,6 +20,17 @@ const sizes = {
   `,
 };
 
+const Button = styled.button`
+  background-color: var(--color-brand-600);
+  border: none;
+  color: var(--color-brand-50);
+  padding: 1.2rem 1.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+`
+
 const variations = {
   primary: css`
     color: var(--color-brand-50);
