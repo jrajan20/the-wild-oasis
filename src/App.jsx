@@ -1,7 +1,9 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom'
-
+import Button from './ui/Button'
+import Input from './ui/Input'
 import styled from 'styled-components'
+import Row from './ui/Row'
 import Account from './pages/Account'
 import Bookings from './pages/Bookings'
 import Cabins from './pages/Cabins'
@@ -11,33 +13,10 @@ import PageNotFound from './pages/PageNotFound'
 import Settings from './pages/Settings'
 import Users from './pages/Users'
 import GlobalStyles from './styles/GlobalStyles'
+import Heading from './ui/Heading'
 
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  color: #333;
-` 
-const Button = styled.button`
-  background-color: var(--color-brand-600);
-  border: none;
-  color: var(--color-brand-50);
-  padding: 1.2rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
-`
 
-  const Input = styled.input`
-  padding: 1.2rem 1.6rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  border: 1px solid var(--color-grey-300);
-  background-color: var(--color-grey-0);
-  border-radius: var(--border-radius-sm);
-  box-shadow: var(--shadow-sm);
-`
+
   const StyledApp =styled.div`
   background-color: #f5f5f5;
   padding: 2rem;
@@ -49,10 +28,22 @@ function App() {
     <>
       <GlobalStyles />
       <StyledApp>
-      <H1>Welcome to the Wild Oasis</H1>
-      <Button>Check In</Button>
-      <Button>Check Out</Button>
-      <Input placeholder="Number of guests" />
+        <Row type='vertical'>
+      <Row type='horizontal'>
+        <Heading as='h1'>The Wild Oasis</Heading>
+       <div>
+          <Button variation='primary' size='medium'><Heading as='h2'>Check In</Heading></Button>
+          <Button variation='secondary' size='medium'><Heading as='h2'>Check Out</Heading></Button>
+          
+        </div> 
+    
+      </Row>
+      <Row type='vertical'>
+        <Heading as='h3'>Form:</Heading>
+    
+          <Input placeholder="Number of guests" />
+      </Row>
+      </Row>
     </StyledApp>
     </>
    
