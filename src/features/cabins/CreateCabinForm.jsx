@@ -47,7 +47,7 @@ const Error = styled.span`
 
 
 function CreateCabinForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors }, getValues } = useForm();
   const queryClient = useQueryClient();
 
   const { mutate: handleAddCabin } = useMutation({
@@ -69,22 +69,35 @@ function CreateCabinForm() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
-        <Input type="text" id="name" {...register("name", { required: "Name is required" })} />
+        <Input type="text" id="name" {...register("name", { required: "Name is required"})} />
+        {errors?.name?.message && <Error>{errors.name.message}</Error>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum capacity</Label>
-        <Input type="number" id="maxCapacity" {...register("maxCapacity", { required: "Maximum capacity is required" })} />
+        <Input type="number" id="maxCapacity" {...register("maxCapacity", { required: "Maximum capacity is required" ,min:{
+          value: 1,
+          message: "Maximum capacity must be at least 1"
+        }})} />
+        {errors?.maxCapacity?.message && <Error>{errors.maxCapacity.message}</Error>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="regularPrice">Regular price</Label>
-        <Input type="number" id="regularPrice" {...register("regularPrice", { required: "Regular price is required" })} />
+        <Input type="number" id="regularPrice" {...register("regularPrice", { required: "Regular price is required",
+          min: {
+            value: 0,
+            message: "Regular price must be at least 0"
+          }
+         })} />
+        {errors?.regularPrice?.message && <Error>{errors.regularPrice.message}</Error>}
       </FormRow>
 
       <FormRow>
         <Label htmlFor="discount">Discount</Label>
-        <Input type="number" id="discount" defaultValue={0} {...register("discount")} />
+        <Input type="number" id="discount" defaultValue={0} {...register("discount", { required: "Discount is required",
+          validate: value => value >= 0 && value <= getValues().regularPrice || "Discount must be between 0 and the regular price" })} />
+        {errors?.discount?.message && <Error>{errors.discount.message}</Error>}
       </FormRow>
 
       <FormRow>
