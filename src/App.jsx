@@ -11,11 +11,12 @@ import PageNotFound from './pages/PageNotFound'
 import Settings from './pages/Settings'
 import Users from './pages/Users'
 import GlobalStyles from './styles/GlobalStyles'
+import { Toaster } from 'react-hot-toast'
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60*1000, // 1 minute
+      staleTime: 0, // 1 minute
     },
   },
 })
@@ -24,6 +25,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
+
       <GlobalStyles/>
       <Routes>
           <Route element={<AppLayout />}>
@@ -39,6 +41,21 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Toaster position="top-center" gutter={12} containerStyle={{margin: "8px"}}
+      toastOptions={{ 
+        success: { duration: 3000 }, 
+        error: { duration: 5000 },
+        style: {
+          fontSize: "1.4rem",
+          fontFamily: "Sono",
+          maxWidth: "500px",
+          padding: "1.6rem 2.4rem",
+          backgroundColor: "var(--color-grey-0)",
+          color: "var(--color-grey-700)",
+          boxShadow: "var(--shadow-lg)",
+          borderRadius: "var(--border-radius-md)",
+        }
+      }} />
     </QueryClientProvider>
   )
 }

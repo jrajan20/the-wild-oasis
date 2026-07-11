@@ -29,7 +29,7 @@ const TableHeader = styled.header`
 `;
 
 function CabinTable() {
-  const { data: cabins, status, isLoading, error } = useQuery(["cabin"], getCabins);
+  const { data: cabins, status, isLoading, error } = useQuery(["cabins"], getCabins);
 
   if (error) {
     return <div>Error loading cabins</div>;
