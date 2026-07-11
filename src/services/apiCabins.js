@@ -1,7 +1,7 @@
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function getCabins() {
-  const { data, error } = await supabase.from("cabins").select("*");
+  const { data, error } = await supabase.from("Cabins").select("*");
 
   if (error) {
     console.error(error);
@@ -23,7 +23,7 @@ export async function createCabin(newCabin) {
     : newCabin.image;
 
   const { data, error } = await supabase
-    .from("cabins")
+    .from("Cabins")
     .insert([{ ...newCabin, image: imageUrl }])
     .select()
     .single();
@@ -39,7 +39,7 @@ export async function createCabin(newCabin) {
       .upload(imageName, newCabin.image);
 
     if (storageError) {
-      await supabase.from("cabins").delete().eq("id", data.id);
+      await supabase.from("Cabins").delete().eq("id", data.id);
       console.error(storageError);
       throw new Error("Cabin image could not be uploaded and the cabin was not created");
     }
@@ -60,7 +60,7 @@ export async function updateCabin(id, updatedCabin) {
     : updatedCabin.image;
 
   const { data, error } = await supabase
-    .from("cabins")
+    .from("Cabins")
     .update({ ...updatedCabin, image: imageUrl })
     .eq("id", id)
     .select()
@@ -86,7 +86,7 @@ export async function updateCabin(id, updatedCabin) {
 }
 
 export async function deleteCabin(id) {
-  const { error } = await supabase.from("cabins").delete().eq("id", id);
+  const { error } = await supabase.from("Cabins").delete().eq("id", id);
 
   if (error) {
     console.error(error);
