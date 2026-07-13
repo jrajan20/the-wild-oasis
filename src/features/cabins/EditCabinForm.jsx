@@ -7,7 +7,7 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 
-function EditCabinForm({ cabin, onCloseForm }) {
+function EditCabinForm({ cabin, onCloseModal }) {
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ function EditCabinForm({ cabin, onCloseForm }) {
 
   function onSubmit(data) {
     const image = data.image?.length ? data.image[0] : cabin.image;
-    editCabin({ id: cabin.id, data: { ...data, image } }, { onSuccess: onCloseForm });
+    editCabin({ id: cabin.id, data: { ...data, image } }, { onSuccess: onCloseModal });
   }
 
   return (
@@ -103,7 +103,7 @@ function EditCabinForm({ cabin, onCloseForm }) {
       </FormRow>
 
       <FormRow>
-        <Button variation="secondary" type="button" onClick={onCloseForm}>
+        <Button variation="secondary" type="button" onClick={onCloseModal}>
           Cancel
         </Button>
         <Button type="submit" disabled={isEditing}>

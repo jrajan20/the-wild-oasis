@@ -9,12 +9,20 @@ import Textarea from "../../ui/Textarea";
 import FormRow from "../../ui/FormRow";
 
 
-function CreateCabinForm() {
+function CreateCabinForm({ onCloseModal }) {
   const { register, handleSubmit, reset, formState: { errors }, getValues } = useForm();
   const { createCabin, isCreating } = useCreateCabin();
 
   function onSubmit(data) {
-    createCabin({ ...data, image: data.image[0] }, { onSuccess: reset });
+    createCabin(
+      { ...data, image: data.image[0] },
+      {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
+      }
+    );
   }
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +61,7 @@ function CreateCabinForm() {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={onCloseModal}>
           Cancel
         </Button>
         <Button type="submit">Add cabin</Button>
