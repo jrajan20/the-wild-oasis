@@ -15,6 +15,7 @@ import { useBooking } from "../bookings/useBooking";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";
 import { formatCurrency } from "../../utils/helpers";
+import CheckoutButton from "./CheckoutButton";
 
 const Box = styled.div`
   /* Box */
@@ -42,6 +43,7 @@ function CheckinBooking() {
 
   const {
     id: bookingId,
+    status,
     Guests,
     Cabins,
     totalPrice,
@@ -76,6 +78,25 @@ function CheckinBooking() {
     }
   }
 
+  if (status === "checked-in")
+    return (
+      <>
+        <Row type="horizontal">
+          <Heading as="h1">Check out booking #{bookingId}</Heading>
+          <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        </Row>
+
+        <BookingDataBox booking={booking} />
+
+        <ButtonGroup>
+          <CheckoutButton bookingId={bookingId} />
+          <Button variation="secondary" onClick={moveBack}>
+            Back
+          </Button>
+        </ButtonGroup>
+      </>
+    );
+
   return (
     <>
       <Row type="horizontal">
@@ -102,7 +123,7 @@ function CheckinBooking() {
         <Checkbox
           checked={confirmPaid}
           onChange={() => setConfirmPaid((confirm) => !confirm)}
-          disabled={hasPaid || isCheckingIn}
+          disabled={confirmPaid || isCheckingIn}
           id="confirm"
         >
           I confirm that {Guests?.fullName} has paid the total amount of{" "}
