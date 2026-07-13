@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { HiSquare2Stack, HiTrash } from "react-icons/hi2";
+import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
-import ButtonIcon from "../../ui/ButtonIcon";
-import EditCabin from "./EditCabin";
 import Modal from "../../ui/Modal";
+import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
+import EditCabinForm from "./EditCabinForm";
 
 const Img = styled.img`
   display: block;
@@ -60,16 +60,25 @@ function CabinRow({ cabin }) {
         <Price>{formatCurrency(regularPrice)}</Price>
         <Discount>{formatCurrency(discount)}</Discount>
         <div>
-          <ButtonIcon onClick={handleDuplicate} disabled={isCreating} title="Duplicate">
-            <HiSquare2Stack />
-          </ButtonIcon>
-          <EditCabin cabin={cabin} />
           <Modal>
-            <Modal.Open opens="delete">
-              <ButtonIcon title="Delete">
-                <HiTrash />
-              </ButtonIcon>
-            </Modal.Open>
+            <Menus.Menu>
+              <Menus.Toggle id={cabinId} />
+              <Menus.List id={cabinId}>
+                <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+                  Duplicate
+                </Menus.Button>
+                <Modal.Open opens="edit">
+                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                </Modal.Open>
+                <Modal.Open opens="delete">
+                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                </Modal.Open>
+              </Menus.List>
+            </Menus.Menu>
+
+            <Modal.Window name="edit">
+              <EditCabinForm cabin={cabin} />
+            </Modal.Window>
             <Modal.Window name="delete">
               <ConfirmDelete
                 resourceName="cabin"
