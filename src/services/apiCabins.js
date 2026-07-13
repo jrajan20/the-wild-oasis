@@ -60,7 +60,8 @@ export async function updateCabin(id, updatedCabin) {
     ? `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`
     : updatedCabin.image;
 
-  const { data, error } = await supabase
+  
+    const { data, error } = await supabase
     .from("Cabins")
     .update({ ...updatedCabin, image: imageUrl })
     .eq("id", id)
