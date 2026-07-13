@@ -5,6 +5,8 @@ import { useDeleteCabin } from "./useDeleteCabin";
 import { useCreateCabin } from "./useCreateCabin";
 import ButtonIcon from "../../ui/ButtonIcon";
 import EditCabin from "./EditCabin";
+import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 const TableRow = styled.div`
   display: grid;
   grid-template-columns: 0.6fr 1.8fr 2.2fr 1fr 1fr 1fr;
@@ -72,9 +74,20 @@ function CabinRow({ cabin }) {
             <HiSquare2Stack />
           </ButtonIcon>
           <EditCabin cabin={cabin} />
-          <ButtonIcon onClick={() => handleDelete(cabinId)} disabled={isDeleting} title="Delete">
-            <HiTrash />
-          </ButtonIcon>
+          <Modal>
+            <Modal.Open opens="delete">
+              <ButtonIcon title="Delete">
+                <HiTrash />
+              </ButtonIcon>
+            </Modal.Open>
+            <Modal.Window name="delete">
+              <ConfirmDelete
+                resourceName="cabin"
+                onConfirm={() => handleDelete(cabinId)}
+                disabled={isDeleting}
+              />
+            </Modal.Window>
+          </Modal>
         </div>
       </TableRow>
   );
