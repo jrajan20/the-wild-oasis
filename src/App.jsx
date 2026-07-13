@@ -15,6 +15,7 @@ import Settings from './pages/Settings'
 import Users from './pages/Users'
 import GlobalStyles from './styles/GlobalStyles'
 import { Toaster } from 'react-hot-toast'
+import { DarkModeProvider } from './context/DarkModeContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +27,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
+    <DarkModeProvider>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
@@ -62,6 +64,7 @@ function App() {
         }
       }} />
     </QueryClientProvider>
+    </DarkModeProvider>
   )
 }
 
