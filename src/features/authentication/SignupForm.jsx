@@ -4,11 +4,25 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import { useSignup } from "./useSignup";
+import { useUser } from "./useUser";
+import Spinner from "../../ui/Spinner";
+import { ADMIN_EMAIL } from "../../utils/constants";
+
 
 function SignupForm() {
+  const { user, isLoading: isLoadingUser } = useUser();
   const { signup, isLoading } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
+
+  if (isLoadingUser) return <Spinner />;
+
+  // Only allow admin user to create new users
+  if (user?.email !== ADMIN_EMAIL) {
+    return (
+      <p>You are not authorized to create new users. Only the admin can perform this action.</p>
+    );
+  }
 
   function onSubmit({ fullName, email, password }) {
     signup({ fullName, email, password }, { onSettled: () => reset() });
