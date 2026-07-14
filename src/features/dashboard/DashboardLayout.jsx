@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useRecentBookings } from "./useRecentBookings";
+import { useRecentStays } from "./useRecentStays";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -8,6 +10,12 @@ const StyledDashboardLayout = styled.div`
 `;
 
 function DashboardLayout({ children }) {
+  const { bookings, isLoading: isLoadingBookings, numDays } = useRecentBookings();
+  const { stays, confirmedStays, isLoading: isLoadingStays } = useRecentStays();
+  
+  console.log({ bookings, isLoadingBookings, numDays });
+  console.log({ stays, confirmedStays, isLoadingStays });
+
   return <StyledDashboardLayout>{children}</StyledDashboardLayout>;
 }
 
