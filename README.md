@@ -64,6 +64,7 @@ Link: https://the-wild-oasis-tawny-rho.vercel.app/
 ## Screenshots
 
 ### Login
+
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-25-35" src="https://github.com/user-attachments/assets/e97e31e8-9811-49c8-a194-6657e71c4e13" />
 
 > Secure login page — only authenticated hotel staff can access the dashboard.
@@ -72,9 +73,7 @@ Link: https://the-wild-oasis-tawny-rho.vercel.app/
 
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-28-32" src="https://github.com/user-attachments/assets/958718d8-b59e-4c54-9255-ade6914b22f7" />
 
-
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-28-15" src="https://github.com/user-attachments/assets/bf3d2d8d-5b72-4446-8c66-541ad9acc956" />
-
 
 The main dashboard displays key metrics and charts for a selected date range (last 7, 30, or 90 days):
 
@@ -91,7 +90,6 @@ The main dashboard displays key metrics and charts for a selected date range (la
 
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-31-18" src="https://github.com/user-attachments/assets/541fc316-2df5-4137-af0d-e145816dd51a" />
 
-
 Full bookings table with status filters (All, Checked out, Checked in, Unconfirmed) and sort options. Supports creating, viewing, and deleting bookings. Inline validation prevents exceeding cabin guest capacity.
 
 ### Cabins
@@ -99,7 +97,6 @@ Full bookings table with status filters (All, Checked out, Checked in, Unconfirm
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-32-37" src="https://github.com/user-attachments/assets/d30bd78b-7428-40fb-888b-1f1f0c060a95" />
 
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-33-17" src="https://github.com/user-attachments/assets/7999e8c5-4746-404e-a710-9639585fdb9e" />
-
 
 Cabin management table with photo thumbnails, capacity, pricing, and discount. Each cabin supports edit, duplicate, and delete actions.
 
@@ -113,13 +110,11 @@ User Signup form to create new hotel employees/users from within the application
 
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-34-33" src="https://github.com/user-attachments/assets/6acfb167-0b34-427c-8047-e71116a0c619" />
 
-
 Simple settings form for hotel-wide configuration: min/max nights per booking, max guests, and breakfast price.
 
 ### Account
 
 <img width="1300" height="653" alt="Screenshot From 2026-07-13 23-26-48" src="https://github.com/user-attachments/assets/7d7d8606-6125-45f4-a640-ef412c005ca3" />
-
 
 Update profile name and avatar, or change password.
 
