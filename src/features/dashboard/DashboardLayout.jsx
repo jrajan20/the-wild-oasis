@@ -7,7 +7,7 @@ import DashboardBox from "./DashboardBox";
 import DurationChart from "./DurationChart";
 import SalesChart from "./SalesChart";
 import Spinner from "../../ui/Spinner";
-
+import TodayActivity from "../check-in-out/TodayActivity";
 const StyledDashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -30,7 +30,8 @@ function DashboardLayout() {
         numDays={numDays}
         numCabins={cabins.length}
       />
-      <DashboardBox style={{ gridColumn: "1 / span 2" }} />
+      {/* <DashboardBox style={{ gridColumn: "1 / span 2" }} /> */}
+      <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />
       <SalesChart bookings={bookings} numDays={numDays} />
     </StyledDashboardLayout>
