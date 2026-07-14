@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Empty from "../../ui/Empty";
 import { useNavigate } from "react-router-dom";
 import { HiArrowUpOnSquare, HiArrowDownOnSquare } from "react-icons/hi2";
 
@@ -37,6 +38,12 @@ function BookingDetail() {
 
   if (isLoading) return <Spinner />;
 
+  if(!booking) {
+    return (
+      <Empty resourceName="booking" />
+    );
+  }
+  
   return (
     <>
       <Row type="horizontal">
