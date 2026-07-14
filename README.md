@@ -1,6 +1,6 @@
 # The Wild Oasis
 
-> An internal hotel management dashboard for staff to manage bookings, cabins, guests, and hotel settings.
+> An internal hotel management application for staff to manage bookings, cabins, guests, and hotel settings.
 
 Deployed on Vercel:
 https://the-wild-oasis-tawny-rho.vercel.app/
