@@ -20,8 +20,10 @@ function UpdateSettingsForm() {
   } = settings;
 
   function handleUpdate(e, field) {
+    e.stopPropagation();
     const { value } = e.target;
     if (!value) return;
+    if (String(settings[field]) === value) return;
     editSetting({ [field]: value });
   }
 

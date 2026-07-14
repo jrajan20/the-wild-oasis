@@ -117,6 +117,21 @@ export async function updateBooking(id, obj) {
   return data;
 }
 
+export async function createBooking(newBooking) {
+  const { data, error } = await supabase
+    .from("Bookings")
+    .insert([newBooking])
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
+  }
+
+  return data;
+}
+
 export async function deleteBooking(id) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("Bookings").delete().eq("id", id);

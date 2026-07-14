@@ -1,7 +1,7 @@
 import supabase from "./supabase";
 
 export async function getGuests() {
-  const { data, error } = await supabase.from("guests").select("*");
+  const { data, error } = await supabase.from("Guests").select("*");
 
   if (error) {
     console.error(error);
@@ -13,7 +13,7 @@ export async function getGuests() {
 
 export async function getGuest(id) {
   const { data, error } = await supabase
-    .from("guests")
+    .from("Guests")
     .select("*")
     .eq("id", id)
     .single();
@@ -28,7 +28,7 @@ export async function getGuest(id) {
 
 export async function createGuest(newGuest) {
   const { data, error } = await supabase
-    .from("guests")
+    .from("Guests")
     .insert([newGuest])
     .select()
     .single();
@@ -42,7 +42,7 @@ export async function createGuest(newGuest) {
 }
 
 export async function deleteGuest(id) {
-  const { error } = await supabase.from("guests").delete().eq("id", id);
+  const { error } = await supabase.from("Guests").delete().eq("id", id);
 
   if (error) {
     console.error(error);
