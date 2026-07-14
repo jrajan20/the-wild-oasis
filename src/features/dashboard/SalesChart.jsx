@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Heading from "../../ui/Heading";
 import DashboardBox from "./DashboardBox";
 
 const StyledSalesChart = styled(DashboardBox)`
@@ -57,3 +58,13 @@ const colors = isDarkMode
       text: "#374151",
       background: "#fff",
     };
+
+function SalesChart({ bookings = [], numDays }) {
+  return (
+    <StyledSalesChart>
+      <Heading as="h2">Sales from Jan 09 &mdash; Feb 06</Heading>
+    </StyledSalesChart>
+  );
+}
+
+export default SalesChart;

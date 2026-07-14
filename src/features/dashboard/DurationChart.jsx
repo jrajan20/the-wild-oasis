@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Heading from "../../ui/Heading";
 
 const ChartBox = styled.div`
   /* Box */
@@ -130,3 +131,17 @@ function prepareData(startData, stays) {
 
   return data;
 }
+
+function DurationChart({ confirmedStays = [] }) {
+  const { isDarkMode } = { isDarkMode: false };
+  const startData = isDarkMode ? startDataDark : startDataLight;
+  const data = prepareData(startData, confirmedStays);
+
+  return (
+    <ChartBox>
+      <Heading as="h2">Stay duration summary</Heading>
+    </ChartBox>
+  );
+}
+
+export default DurationChart;
