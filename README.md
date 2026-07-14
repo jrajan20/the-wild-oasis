@@ -2,6 +2,8 @@
 
 > An internal hotel management dashboard for staff to manage bookings, cabins, guests, and hotel settings.
 
+Netlify Link: https://jkrajan20-the-wild-oasis.netlify.app/dashboard
+
 ---
 
 ## Table of Contents
