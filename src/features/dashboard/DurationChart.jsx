@@ -1,5 +1,14 @@
 import styled from "styled-components";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 import Heading from "../../ui/Heading";
+import { useDarkMode } from "../../context/DarkModeContext";
 
 const ChartBox = styled.div`
   /* Box */
@@ -23,42 +32,42 @@ const startDataLight = [
   {
     duration: "1 night",
     value: 0,
-    color: "#ef4444",
+    color: "#ef4444",  // hue 0° — red
   },
   {
     duration: "2 nights",
     value: 0,
-    color: "#f97316",
+    color: "#f97316",  // hue 25° — orange
   },
   {
     duration: "3 nights",
     value: 0,
-    color: "#eab308",
+    color: "#eab308",  // hue 48° — yellow
   },
   {
     duration: "4-5 nights",
     value: 0,
-    color: "#84cc16",
+    color: "#84cc16",  // hue 90° — lime
   },
   {
     duration: "6-7 nights",
     value: 0,
-    color: "#22c55e",
+    color: "#06b6d4",  // hue 190° — cyan
   },
   {
     duration: "8-14 nights",
     value: 0,
-    color: "#14b8a6",
+    color: "#3b82f6",  // hue 220° — blue
   },
   {
     duration: "15-21 nights",
     value: 0,
-    color: "#3b82f6",
+    color: "#16a34a",  // hue 142° — green
   },
   {
     duration: "21+ nights",
     value: 0,
-    color: "#a855f7",
+    color: "#ec4899",  // hue 320° — pink
   },
 ];
 
@@ -66,42 +75,42 @@ const startDataDark = [
   {
     duration: "1 night",
     value: 0,
-    color: "#b91c1c",
+    color: "#fca5a5",  // hue 0° — light red
   },
   {
     duration: "2 nights",
     value: 0,
-    color: "#c2410c",
+    color: "#fdba74",  // hue 25° — light orange
   },
   {
     duration: "3 nights",
     value: 0,
-    color: "#a16207",
+    color: "#fde047",  // hue 48° — light yellow
   },
   {
     duration: "4-5 nights",
     value: 0,
-    color: "#4d7c0f",
+    color: "#bef264",  // hue 90° — light lime
   },
   {
     duration: "6-7 nights",
     value: 0,
-    color: "#15803d",
+    color: "#67e8f9",  // hue 190° — light cyan
   },
   {
     duration: "8-14 nights",
     value: 0,
-    color: "#0f766e",
+    color: "#93c5fd",  // hue 220° — light blue
   },
   {
     duration: "15-21 nights",
     value: 0,
-    color: "#1d4ed8",
+    color: "#86efac",  // hue 142° — light green
   },
   {
     duration: "21+ nights",
     value: 0,
-    color: "#7e22ce",
+    color: "#f9a8d4",  // hue 320° — light pink
   },
 ];
 
@@ -133,13 +142,44 @@ function prepareData(startData, stays) {
 }
 
 function DurationChart({ confirmedStays = [] }) {
-  const { isDarkMode } = { isDarkMode: false };
+  const { isDarkMode } = useDarkMode();
   const startData = isDarkMode ? startDataDark : startDataLight;
   const data = prepareData(startData, confirmedStays);
 
   return (
     <ChartBox>
       <Heading as="h2">Stay duration summary</Heading>
+
+      <ResponsiveContainer width="100%" height={220}>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="duration"
+            innerRadius={70}
+            outerRadius={95}
+            cx="40%"
+            paddingAngle={3}
+          >
+            {data.map((entry) => (
+              <Cell key={entry.duration} fill={entry.color} stroke={entry.color} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend
+            iconType="circle"
+            layout="vertical"
+            verticalAlign="middle"
+            align="right"
+            iconSize={15}
+            formatter={(value, entry) => (
+              <span style={{ color: isDarkMode ? "#e5e7eb" : "#374151" }}>
+                {value}
+              </span>
+            )}
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </ChartBox>
   );
 }
