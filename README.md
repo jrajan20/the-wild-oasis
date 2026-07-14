@@ -2,9 +2,10 @@
 
 > An internal hotel management dashboard for staff to manage bookings, cabins, guests, and hotel settings.
 
-Netlify Link: https://jkrajan20-the-wild-oasis.netlify.app/dashboard
+Deployed on Vercel:
+Link: https://the-wild-oasis-tawny-rho.vercel.app/
 
----
+## Netlify Link: https://jkrajan20-the-wild-oasis.netlify.app/dashboard
 
 ## Table of Contents
 
