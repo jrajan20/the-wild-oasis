@@ -8,6 +8,9 @@ https://the-wild-oasis-tawny-rho.vercel.app/
 Netlify Link:
 https://jkrajan20-the-wild-oasis.netlify.app/dashboard
 
+Test User: joker@gmail.com
+PW: test1234
+
 ## Table of Contents
 
 - [Overview](#overview)
