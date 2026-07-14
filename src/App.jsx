@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from './ui/ErrorFallback'
 import AppLayout from './ui/AppLayout'
 import ProtectedRoute from './ui/ProtectedRoute'
 import Account from './pages/Account'
@@ -27,6 +29,7 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
+    <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => window.location.replace('/')}>
     <DarkModeProvider>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
@@ -65,6 +68,7 @@ function App() {
       }} />
     </QueryClientProvider>
     </DarkModeProvider>
+    </ErrorBoundary>
   )
 }
 
