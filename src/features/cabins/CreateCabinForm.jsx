@@ -48,7 +48,7 @@ function CreateCabinForm({ onCloseModal }) {
 
       <FormRow label="Discount" htmlFor="discount" error={errors?.discount?.message}>
         <Input type="number" id="discount" defaultValue={0} {...register("discount", { required: "Discount is required",
-          validate: value => value >= 0 && value <= getValues().regularPrice || "Discount must be between 0 and the regular price" })} />
+          validate: value => Number(value) >= 0 && Number(value) <= Number(getValues().regularPrice) || "Discount must be between 0 and the regular price" })} />
       </FormRow>
 
       <FormRow label="Description for website" htmlFor="description" error={errors?.description?.message}>
