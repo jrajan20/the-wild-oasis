@@ -4,6 +4,8 @@ import CabinRow from "./CabinRow";
 import Spinner from "../../ui/Spinner";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Pagination from "../../ui/Pagination";
+import { CABIN_PAGE_SIZE } from "../../utils/constants";
 
 function CabinTable() {
   const { cabins, isLoading, error } = useCabins();
@@ -34,6 +36,15 @@ function CabinTable() {
       : (a[sortField] - b[sortField]) * modifier
   );
 
+  // Pagination
+  const currentPage = !searchParams.get("page")
+    ? 1
+    : Number(searchParams.get("page"));
+  const count = sortedCabins.length;
+  const from = (currentPage - 1) * CABIN_PAGE_SIZE;
+  const to = from + CABIN_PAGE_SIZE;
+  const paginatedCabins = sortedCabins.slice(from, to);
+
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -46,9 +57,12 @@ function CabinTable() {
           <div></div>
         </Table.Header>
         <Table.Body
-          data={sortedCabins}
+          data={paginatedCabins}
           render={(cabin) => <CabinRow key={cabin.id} cabin={cabin} />}
         />
+        <Table.Footer>
+          <Pagination count={count} pageSize={CABIN_PAGE_SIZE} />
+        </Table.Footer>
       </Table>
     </Menus>
   );

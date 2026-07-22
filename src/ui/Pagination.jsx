@@ -59,15 +59,15 @@ const PaginationButton = styled.button`
   }
 `;
 
-function Pagination({ count }) {
+function Pagination({ count, pageSize = PAGE_SIZE }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
 
-  const pageCount = Math.ceil(count / PAGE_SIZE);
-  const from = (currentPage - 1) * PAGE_SIZE + 1;
-  const to = currentPage === pageCount ? count : currentPage * PAGE_SIZE;
+  const pageCount = Math.ceil(count / pageSize);
+  const from = (currentPage - 1) * pageSize + 1;
+  const to = currentPage === pageCount ? count : currentPage * pageSize;
 
   function handlePrevPage() {
     searchParams.set("page", currentPage - 1);
