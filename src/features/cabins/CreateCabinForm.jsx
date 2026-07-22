@@ -51,7 +51,7 @@ function CreateCabinForm({ onCloseModal }) {
           validate: value => {
             const discount = Number(value);
             const regularPrice = Number(getValues().regularPrice);
-            return (discount >= 0 && discount <= regularPrice) || "Discount must be between 0 and the regular price";
+            return discount >= 0 && discount <= regularPrice ? true : "Discount must be between 0 and the regular price";
           } })} />
       </FormRow>
 
